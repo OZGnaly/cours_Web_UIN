@@ -4,7 +4,8 @@
   "description": "the couse i use in on this link <https://www.youtube.com/watch?v=PM58NEMJgMw&t=60s>",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/index.ts"
   },
   "keywords": [],
   "author": "",
@@ -17,6 +18,7 @@
     "express-validator": "^7.0.1"
   },
   "devDependencies": {
+    "@faker-js/faker": "^8.0.2",
     "@types/cors": "^2.8.13",
     "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.17",
