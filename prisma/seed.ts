@@ -37,7 +37,7 @@ function getAuthor(): Array<Author> {
 
 }
 
-function getBook(): Array<Book> {
+function getBooks(): Array<Book> {
     return [
         {
             title: 'Harry Potter and the Philosopher\'s Stone',
@@ -111,3 +111,42 @@ function getBook(): Array<Book> {
         }
     ]
 }
+
+async function seed() {
+    await Promise.all(
+        getAuthor().map((author) => {
+            return db.author.create({
+                data: {
+                    firstName: author.firstName,
+                    lastName: author.lastName
+                }
+            })
+        })
+    );
+    const author = await db.author.findFirst({
+        where: {
+            firstName: "George R.R."
+        }
+    });
+
+    await Promise.all(
+        getBooks().map((book) => {
+            const { title, isFiction, datePublished } = book
+            const id = author?.id;
+            if (id) {
+                return db.book.create({
+                data: {
+                    title: title,
+                    isFiction: isFiction,
+                    datePublished: datePublished,
+                    authorId: id,
+                },
+            })
+            }
+             
+        })
+    );
+}
+
+// call seed 
+seed();
