@@ -7,7 +7,9 @@ import * as AuthorService from "./author.service";
 export const AuthRouter = express.Router();
 
 // Get All author
-AuthRouter.get("/", async (req: Request, res: Response) => {
+AuthRouter.get(
+    "/", 
+    async (req: Request, res: Response) => {
     try {
         const authors = await AuthorService.listAuthors();
         return res.status(200).json(authors)
